@@ -1,26 +1,7 @@
-buildscript {
-
-    repositories {
-        google()
-        mavenCentral()
-    }
-
-    dependencies {
-        classpath(Paths.gradle)
-        classpath(Paths.kotlin)
-        classpath(Paths.navigationArgs)
-    }
-}
+import extensions.applyDefault
 
 allprojects {
-    repositories {
-        google()
-        mavenCentral()
-    }
-}
+    repositories.applyDefault()
 
-subprojects {
-    afterEvaluate {
-        apply(plugin = Plugins.ktLint)
-    }
+    plugins.apply(BuildPlugins.KTLINT)
 }
