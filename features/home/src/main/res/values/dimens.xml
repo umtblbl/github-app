@@ -15,10 +15,9 @@
     <dimen name="general_size_sm">16sp</dimen>
     <dimen name="general_size_md">24sp</dimen>
 
-    <!-- Toolbar -->
-    <dimen name="toolbar_icon_size">32dp</dimen>
-
-    <!-- App Progress -->
-    <dimen name="toolbar_height">60dp</dimen>
+    <!-- User Search Fragment -->
+    <dimen name="fragment_user_search_view_padding_top">4dp</dimen>
+    <dimen name="item_user_icon_size">40dp</dimen>
+    <dimen name="item_user_margin_bottom">12dp</dimen>
 
 </resources>

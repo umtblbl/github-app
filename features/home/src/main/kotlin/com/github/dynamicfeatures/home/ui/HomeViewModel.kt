@@ -4,15 +4,12 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.navigation.NavController
-import com.github.core.domain.github.UserSearchUseCase
 import com.github.dynamicfeatures.home.R
 import javax.inject.Inject
 
 val NAV_FRAGMENTS_ID = setOf(R.id.user_search_fragment, R.id.user_favorites_fragment)
 
-class HomeViewModel @Inject constructor(
-    val userSearchUseCase: UserSearchUseCase
-): ViewModel() {
+class HomeViewModel @Inject constructor(): ViewModel() {
 
     private val _state = MutableLiveData<HomeViewState>()
     val state: LiveData<HomeViewState>

@@ -8,7 +8,7 @@ data class UserSearchResponse(
     @Json(name = "incomplete_results")
     val incompleteResults: Boolean?,
     @Json(name = "items")
-    val searchUsers: List<SearchUser>?,
+    val users: List<SearchUser?>?,
     @Json(name = "total_count")
     val totalCount: Int?
 )

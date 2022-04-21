@@ -8,7 +8,7 @@ import retrofit2.http.Query
 
 interface GithubAPI {
 
-    @GET("users")
+    @GET("search/users")
     suspend fun userSearch(
         @Query("q") query: String?
     ): UserSearchResponse?
