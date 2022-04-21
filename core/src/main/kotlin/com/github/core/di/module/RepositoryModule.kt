@@ -1,5 +1,6 @@
 package com.github.core.di.module
 
+import com.github.core.data.local.room.dataSource.GithubLocalDataSource
 import com.github.core.data.remote.api.dataSource.GithubRemoteDataSource
 import com.github.core.data.repository.GithubRepository
 import dagger.Module
@@ -11,6 +12,11 @@ class RepositoryModule {
 
     @Singleton
     @Provides
-    fun provideGithubRepository(githubRemoteDataSource: GithubRemoteDataSource) =
-        GithubRepository(githubRemoteDataSource)
+    fun provideGithubRepository(
+        githubRemoteDataSource: GithubRemoteDataSource,
+        githubLocalDataSource: GithubLocalDataSource
+    ) = GithubRepository(
+        githubRemoteDataSource,
+        githubLocalDataSource
+    )
 }

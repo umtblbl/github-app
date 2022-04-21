@@ -19,36 +19,13 @@ import javax.inject.Singleton
         ContextModule::class,
         NetworkModule::class,
         DataSourceModule::class,
-        RepositoryModule::class
+        RepositoryModule::class,
+        DatabaseModule::class
     ]
 )
 interface CoreComponent {
-
-    /**
-     * Provide dependency graph Context>
-     *
-     * @return Context
-     */
     fun context(): Context
-
-    /**
-     * Provide dependency graph MarvelService
-     *
-     * @return MarvelService
-     */
     fun githubAPI(): GithubAPI
-
-    /**
-     * Provide dependency graph MarvelRepository
-     *
-     * @return MarvelRepository
-     */
     fun githubRepository(): GithubRepository
-
-    /**
-     * Provide dependency graph CharacterFavoriteDao
-     *
-     * @return CharacterFavoriteDao
-     */
     fun githubRemoteDataSource(): GithubRemoteDataSource
 }

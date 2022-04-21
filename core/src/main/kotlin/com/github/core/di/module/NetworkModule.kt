@@ -20,10 +20,10 @@ class NetworkModule {
     @Singleton
     @Provides
     fun provideOkhttpClient(): OkHttpClient {
-        val cache = Cache(Environment.getDownloadCacheDirectory(), Configs.Network.cacheSize)
+        val cache = Cache(Environment.getDownloadCacheDirectory(), Configs.Network.CACHE_SIZE)
         return OkHttpClient.Builder()
-            .connectTimeout(Configs.Network.timeOut, TimeUnit.SECONDS)
-            .readTimeout(Configs.Network.timeOut, TimeUnit.SECONDS)
+            .connectTimeout(Configs.Network.TIME_OUT, TimeUnit.SECONDS)
+            .readTimeout(Configs.Network.TIME_OUT, TimeUnit.SECONDS)
             .retryOnConnectionFailure(true)
             .cache(cache)
             .build()
@@ -37,7 +37,7 @@ class NetworkModule {
             .build()
 
         return Retrofit.Builder()
-            .baseUrl(Configs.Network.baseURL)
+            .baseUrl(Configs.Network.BASE_URL)
             .client(okHttpClient)
             .addConverterFactory(MoshiConverterFactory.create(moshi))
             .build()

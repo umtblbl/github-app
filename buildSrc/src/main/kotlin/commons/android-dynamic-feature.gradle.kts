@@ -98,7 +98,6 @@ dependencies {
     implementation(Dependencies.CONSTRAIN_LAYOUT)
     implementation(Dependencies.DAGGER)
     implementation(Dependencies.LOGGING)
-    implementation(Dependencies.VIEW_PAGER2)
 
     kapt(AnnotationProcessorsDependencies.DAGGER)
     kapt(AnnotationProcessorsDependencies.DATABINDING)

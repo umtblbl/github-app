@@ -27,7 +27,6 @@ dependencies {
     implementation(Dependencies.LOGGING)
     implementation(Dependencies.MOSHI)
     implementation(Dependencies.MOSHI_KTX)
-    implementation(Dependencies.VIEW_PAGER2)
 
     kapt(AnnotationProcessorsDependencies.DATABINDING)
     kapt(AnnotationProcessorsDependencies.ROOM)

@@ -27,5 +27,5 @@ object Dependencies {
     const val MOSHI_KTX = "com.squareup.moshi:moshi-kotlin:${BuildDependenciesVersions.MOSHI}"
     const val COIL = "io.coil-kt:coil:${BuildDependenciesVersions.COIL}"
     const val PLAY_CORE = "com.google.android.play:core:${BuildDependenciesVersions.PLAY_CORE}"
-    const val VIEW_PAGER2 = "androidx.viewpager2:viewpager2:${BuildDependenciesVersions.VIEW_PAGER2}"
+    const val ALERTER_TOAST = "com.github.tapadoo:alerter:${BuildDependenciesVersions.ALERTER_TOAST}"
 }

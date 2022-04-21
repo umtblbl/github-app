@@ -1,19 +1,25 @@
 package com.github.dynamicfeatures.usersearch.ui
 
 import android.os.Build
+import android.util.Log
 import android.widget.EditText
+import android.widget.Toast
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.Observer
 import com.github.android.GithubApp
 import com.github.commons.ui.adapter.RecyclerViewBasicAdapter
 import com.github.commons.ui.base.BaseFragment
 import com.github.commons.ui.extension.changes
 import com.github.commons.ui.extension.showKeyboard
+import com.github.commons.views.AppToast
 import com.github.dynamicfeatures.usersearch.BR
 import com.github.dynamicfeatures.usersearch.Configs
 import com.github.dynamicfeatures.usersearch.R
 import com.github.dynamicfeatures.usersearch.databinding.FragmentUserSearchBinding
+import com.github.dynamicfeatures.usersearch.databinding.ItemUserBinding
 import com.github.dynamicfeatures.usersearch.di.DaggerUserSearchComponent
 import com.github.dynamicfeatures.usersearch.ui.model.ItemUserModel
+import com.github.dynamicfeatures.usersearch.ui.type.ToastType
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.*
@@ -42,16 +48,39 @@ class UserSearchFragment(
         initUserRecyclerView()
         customizeSearchView()
         listenUserSearchView()
+        listenFavoriteActionResult()
     }
 
     //region private functions
 
+    private fun listenFavoriteActionResult() {
+        viewModel.favoriteActionResultData.observe(this) { isSuccess ->
+            if (isSuccess)
+                Toast.makeText(
+                    context,
+                    context?.getString(ToastType.ProcessSuccessful.titleResId),
+                    Toast.LENGTH_SHORT
+                ).show()
+        }
+    }
+
     private fun initUserRecyclerView() {
         adapter = RecyclerViewBasicAdapter(
             layoutId = R.layout.item_user,
-            bindingModelName = BR.model
-        ) {
-        }
+            bindingModelName = BR.model,
+            itemSelected = {
+                println("SelectedUser: ${it.userName}")
+            },
+            bindHandler = { viewDataBinding, model ->
+                val itemUserBinding = viewDataBinding as? ItemUserBinding
+                val itemUserModel = model as? ItemUserModel
+                itemUserBinding?.favoriteImageView?.setOnClickListener {
+                    uiScope.launch(Dispatchers.IO) {
+                        viewModel.addFavoriteUser(itemUserModel)
+                    }
+                }
+            }
+        )
     }
 
     private fun customizeSearchView() {
