@@ -7,7 +7,7 @@ dependencies {
 }
 
 tasks {
-    register<JavaExec>("ktlint") {
+    register<JavaExec>("ktlintCheck") {
         group = BuildTasksGroups.VERIFICATION
         description = "Check Kotlin code style."
         classpath = ktlint

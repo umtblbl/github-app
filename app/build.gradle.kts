@@ -15,6 +15,11 @@ plugins {
 }
 
 android {
+
+    packagingOptions {
+        exclude("META-INF/*.kotlin_module")
+    }
+
     compileSdkVersion(BuildAndroidConfig.COMPILE_SDK_VERSION)
     defaultConfig {
         applicationId = BuildAndroidConfig.APPLICATION_ID
@@ -109,6 +114,9 @@ dependencies {
     implementation(Dependencies.LOGGING)
     implementation(Dependencies.PLAY_CORE)
     implementation(Dependencies.DAGGER)
+    implementation(Dependencies.daggerAndroid)
+    implementation(Dependencies.daggerAndroidSupport)
+    implementation(Dependencies.daggerCompiler)
 
     debugImplementation(DebugDependencies.LEAKCANARY)
 

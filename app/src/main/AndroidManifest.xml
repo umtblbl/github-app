@@ -10,7 +10,6 @@
 
     <application
         android:name="com.github.android.GithubApp"
-        android:fullBackupContent="true"
         android:allowBackup="true"
         android:extractNativeLibs="false"
         android:icon="@mipmap/ic_launcher"
@@ -18,7 +17,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:targetApi="m">
-        <activity android:name="com.github.android.MainActivity">
+        <activity android:name="com.github.android.MainActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

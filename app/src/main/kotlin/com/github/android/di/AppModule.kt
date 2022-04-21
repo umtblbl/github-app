@@ -6,18 +6,19 @@ import dagger.Module
 import dagger.Provides
 
 /**
- * Provider Module for AppModule.
+ * Class that contributes to the object graph [AppComponent].
  * @see Module
  */
 @Module
 class AppModule {
+
     /**
      * Create a provider method binding for [Context].
+     *
      * @param application Sample Application.
-     * @return instance of context.
+     * @return Instance of context.
      * @see Provides
      */
     @Provides
     fun provideContext(application: GithubApp): Context = application.applicationContext
 }
-

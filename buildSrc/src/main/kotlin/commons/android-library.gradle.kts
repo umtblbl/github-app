@@ -18,6 +18,11 @@ plugins {
 }
 
 android {
+
+    packagingOptions {
+        exclude("META-INF/*.kotlin_module")
+    }
+
     compileSdkVersion(BuildAndroidConfig.COMPILE_SDK_VERSION)
 
     defaultConfig {
@@ -75,6 +80,9 @@ dependencies {
     implementation(Dependencies.COROUTINES_ANDROID)
     implementation(Dependencies.DAGGER)
     implementation(Dependencies.TIMBER)
+    implementation(Dependencies.daggerAndroid)
+    implementation(Dependencies.daggerAndroidSupport)
+    implementation(Dependencies.daggerCompiler)
 
     kapt(AnnotationProcessorsDependencies.DAGGER)
 
