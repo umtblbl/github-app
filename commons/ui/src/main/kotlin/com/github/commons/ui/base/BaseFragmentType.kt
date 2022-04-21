@@ -1,9 +1,9 @@
-package com.github.commons.ui
+package com.github.commons.ui.base
 
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.ViewModel
 
-interface FragmentType<VM : ViewModel, Binding : ViewDataBinding> {
+interface BaseFragmentType<VM : ViewModel, Binding : ViewDataBinding> {
 
     val binding: Binding
     val viewModel: VM

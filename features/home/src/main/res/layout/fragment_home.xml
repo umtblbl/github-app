@@ -1,14 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <RelativeLayout
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.github.dynamicfeatures.home.ui.HomeViewModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:animateLayoutChanges="true">
 
-        <TextView
-            android:layout_width="wrap_content"
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/navHostContainer"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@color/mainBackground"
+            app:layout_constrainedHeight="true"
+            app:layout_constraintBottom_toTopOf="@+id/bottomNavigation"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottomNavigation"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/home_fragment" />
+            android:background="@color/secondaryBackground"
+            app:itemIconTint="@drawable/sl_navigation"
+            app:itemTextColor="@drawable/sl_navigation"
+            app:layout_constrainedHeight="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/navHostContainer"
+            app:menu="@menu/bottom_menu"
+            app:visible="@{viewModel.state.navigationScreen}" />
 
-    </RelativeLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

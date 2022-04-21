@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="UnusedIds">
+    <item
+        android:id="@+id/navigation_user_search_graph"
+        android:icon="@drawable/person_icon"
+        android:title="@string/bottom_menu_search_title" />
+    <item
+        android:id="@+id/navigation_user_favorites_graph"
+        android:icon="@drawable/favorite_icon"
+        android:title="@string/bottom_menu_favorites_title" />
+</menu>

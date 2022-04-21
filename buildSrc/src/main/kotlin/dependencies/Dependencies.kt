@@ -19,10 +19,6 @@ object Dependencies {
     const val SWIPE_REFRESH_LAYOUT = "androidx.swiperefreshlayout:swiperefreshlayout:${BuildDependenciesVersions.SWIPE_REFRESH_LAYOUT}"
     const val PAGING = "androidx.paging:paging-runtime-ktx:${BuildDependenciesVersions.PAGING}"
     const val DAGGER = "com.google.dagger:dagger:${BuildDependenciesVersions.DAGGER}"
-    const val daggerAndroid = "com.google.dagger:dagger-android:${BuildDependenciesVersions.DAGGER}"
-    const val daggerAndroidSupport = "com.google.dagger:dagger-android-support:${BuildDependenciesVersions.DAGGER}"
-    const val daggerCompiler = "com.google.dagger:dagger-compiler:${BuildDependenciesVersions.DAGGER}"
-    const val daggerAndroidProcessor = "com.google.dagger:dagger-android-processor:${BuildDependenciesVersions.DAGGER}"
     const val TIMBER = "com.jakewharton.timber:timber:${BuildDependenciesVersions.TIMBER}"
     const val RETROFIT = "com.squareup.retrofit2:retrofit:${BuildDependenciesVersions.RETROFIT}"
     const val RETROFIT_CONVERTER_MOSHI = "com.squareup.retrofit2:converter-moshi:${BuildDependenciesVersions.RETROFIT}"
@@ -31,4 +27,5 @@ object Dependencies {
     const val MOSHI_KTX = "com.squareup.moshi:moshi-kotlin:${BuildDependenciesVersions.MOSHI}"
     const val COIL = "io.coil-kt:coil:${BuildDependenciesVersions.COIL}"
     const val PLAY_CORE = "com.google.android.play:core:${BuildDependenciesVersions.PLAY_CORE}"
+    const val VIEW_PAGER2 = "androidx.viewpager2:viewpager2:${BuildDependenciesVersions.VIEW_PAGER2}"
 }

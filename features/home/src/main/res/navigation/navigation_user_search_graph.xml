@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_user_search_graph"
+    app:startDestination="@+id/user_search_fragment"
+    tools:ignore="UnusedNavigation">
+    <fragment
+        android:id="@+id/user_search_fragment"
+        android:name="com.github.dynamicfeatures.usersearch.ui.UserSearchFragment"
+        android:label="@string/bottom_menu_search_title">
+    </fragment>
+</navigation>

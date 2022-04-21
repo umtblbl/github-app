@@ -21,6 +21,7 @@ object BuildDependenciesVersions {
     const val PLAY_CORE = "1.8.2"
     const val LEAKCANARY = "2.5"
     const val DATABINDING = "3.1.4"
+    const val VIEW_PAGER2 = "1.0.0"
 
     // Tests
     const val TEST = "1.3.0"

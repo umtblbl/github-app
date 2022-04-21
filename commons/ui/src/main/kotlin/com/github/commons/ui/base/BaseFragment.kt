@@ -1,10 +1,10 @@
-package com.github.commons.ui
+package com.github.commons.ui.base
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
@@ -16,7 +16,7 @@ import kotlin.reflect.KClass
 
 abstract class BaseFragment<VM : ViewModel, Binding : ViewDataBinding>(
     private val clazz: KClass<VM>
-) : Fragment(), FragmentType<VM, Binding> {
+) : Fragment(), BaseFragmentType<VM, Binding> {
 
     @Inject
     internal lateinit var viewModelFactory: ViewModelFactory
@@ -36,5 +36,13 @@ abstract class BaseFragment<VM : ViewModel, Binding : ViewDataBinding>(
         initDI()
         setupView()
         return binding.root
+    }
+
+    fun requireCompatActivity(): AppCompatActivity {
+        val activity = requireActivity()
+        return if (activity is AppCompatActivity)
+            activity
+        else
+            throw TypeCastException("Main activity should extend from 'AppCompatActivity'")
     }
 }

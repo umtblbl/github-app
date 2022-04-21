@@ -1,2 +1,7 @@
 <resources>
+
+    <!-- Bottom Navigation -->
+    <string name="bottom_menu_search_title">Search</string>
+    <string name="bottom_menu_favorites_title">Favorites</string>
+
 </resources>

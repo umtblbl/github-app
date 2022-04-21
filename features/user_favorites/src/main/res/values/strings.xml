@@ -1,3 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="user_favorites_fragment">User Favorites Fragment</string>
 </resources>
