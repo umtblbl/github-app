@@ -65,12 +65,12 @@ class UserDetailFragment(
                         ?.apply {
                             this.isFavorite = !this.isFavorite
                         }
+                    Toast.makeText(
+                        context,
+                        context?.getString(ToastType.ProcessSuccessful.titleResId),
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
-                Toast.makeText(
-                    context,
-                    context?.getString(ToastType.ProcessSuccessful.titleResId),
-                    Toast.LENGTH_SHORT
-                ).show()
             }
         }
         viewModel.favoriteActionResultData.postValue(null)
