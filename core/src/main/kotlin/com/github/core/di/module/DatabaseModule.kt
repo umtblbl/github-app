@@ -15,7 +15,7 @@ class DatabaseModule {
 
     @Singleton
     @Provides
-    fun provideAppDatabase(context: Context): GithubDatabase =
+    fun provideGithubDatabase(context: Context): GithubDatabase =
          Room.databaseBuilder(
             context,
             GithubDatabase::class.java,
