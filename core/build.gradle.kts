@@ -24,7 +24,6 @@ dependencies {
     implementation(Dependencies.CORE_KTX)
     implementation(Dependencies.RETROFIT)
     implementation(Dependencies.RETROFIT_CONVERTER_MOSHI)
-    implementation(Dependencies.LOGGING)
     implementation(Dependencies.MOSHI)
     implementation(Dependencies.MOSHI_KTX)
 

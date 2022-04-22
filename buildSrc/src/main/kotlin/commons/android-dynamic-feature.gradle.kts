@@ -98,7 +98,6 @@ dependencies {
     implementation(Dependencies.FRAGMENT_KTX)
     implementation(Dependencies.CONSTRAIN_LAYOUT)
     implementation(Dependencies.DAGGER)
-    implementation(Dependencies.LOGGING)
 
     kapt(AnnotationProcessorsDependencies.DAGGER)
     kapt(AnnotationProcessorsDependencies.DATABINDING)

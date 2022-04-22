@@ -79,7 +79,6 @@ dependencies {
     implementation(Dependencies.COROUTINES)
     implementation(Dependencies.COROUTINES_ANDROID)
     implementation(Dependencies.DAGGER)
-    implementation(Dependencies.TIMBER)
 
     kapt(AnnotationProcessorsDependencies.DAGGER)
 

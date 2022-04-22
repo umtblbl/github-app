@@ -16,7 +16,6 @@ dependencies {
     implementation(Dependencies.FRAGMENT_KTX)
     implementation(Dependencies.NAVIGATION_FRAGMENT)
     implementation(Dependencies.NAVIGATION_UI)
-    implementation(Dependencies.PAGING)
     implementation(Dependencies.COIL)
 
     kapt(AnnotationProcessorsDependencies.DATABINDING)

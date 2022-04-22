@@ -112,7 +112,6 @@ dependencies {
     implementation(Dependencies.MATERIAL)
     implementation(Dependencies.CONSTRAIN_LAYOUT)
     implementation(Dependencies.NAVIGATION_FRAGMENT)
-    implementation(Dependencies.LOGGING)
     implementation(Dependencies.PLAY_CORE)
     implementation(Dependencies.DAGGER)
 

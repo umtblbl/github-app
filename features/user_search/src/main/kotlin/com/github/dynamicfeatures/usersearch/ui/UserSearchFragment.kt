@@ -61,16 +61,18 @@ class UserSearchFragment(
     }
 
     private fun listenFavoriteActionResult() {
-        viewModel.favoriteActionResultData.observe(this) { pair ->
-            pair?.let {
-                val itemUserModel = it.first
-                val isSuccess = it.second
+        viewModel.favoriteActionResultData.observe(this) { pairData ->
+            pairData?.let { pair ->
+                val itemUserModel = pair.first
+                val isSuccess = pair.second
 
                 if (isSuccess) {
-                    adapter.list = adapter.list.apply {
-                        this.firstOrNull { it == itemUserModel }
-                            ?.apply { this.isFavorite = !this.isFavorite }
-                    }
+                    adapter.list = adapter.list
+                        .toMutableList()
+                        .apply {
+                            firstOrNull { it.userName == itemUserModel?.userName }
+                                ?.apply { this.isFavorite = !this.isFavorite }
+                        }
                     Toast.makeText(
                         context,
                         context?.getString(ToastType.ProcessSuccessful.titleResId),

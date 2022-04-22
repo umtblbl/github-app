@@ -50,10 +50,10 @@ class UserFavoritesFragment(
                 val isSuccess = pair.second
 
                 if (isSuccess) {
-                    adapter.list = adapter.list.apply {
-                        this.firstOrNull { it == itemUserModel }
-                            ?.apply { this.isFavorite = !this.isFavorite }
-                    }
+                    adapter.list = adapter.list.toMutableList()
+                        .apply {
+                            remove(firstOrNull { it.userName == itemUserModel?.userName })
+                        }
                     Toast.makeText(
                         context,
                         context?.getString(ToastType.ProcessSuccessful.titleResId),
