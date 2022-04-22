@@ -2,7 +2,6 @@ package com.github.dynamicfeatures.userfavorites.ui
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.github.core.domain.UseCase
 import com.github.dynamicfeatures.userfavorites.domain.DeleteFavoriteUserUseCase
 import com.github.dynamicfeatures.userfavorites.domain.GetAllFavoriteUserUseCase
 import com.github.dynamicfeatures.userfavorites.ui.model.ItemUserModel
@@ -13,10 +12,10 @@ class UserFavoritesViewModel @Inject constructor(
     private val deleteFavoriteUserUseCase: DeleteFavoriteUserUseCase
 ) : ViewModel() {
 
-    val favoriteActionResultData = MutableLiveData<Pair<ItemUserModel?, Boolean>>()
-    val itemUserModels = MutableLiveData<List<ItemUserModel>>()
+    val favoriteActionResultData = MutableLiveData<Pair<ItemUserModel?, Boolean>?>()
+    val itemUserModelsData = MutableLiveData<List<ItemUserModel>>()
 
-    suspend fun allFavoriteUsers() = itemUserModels.postValue(
+    suspend fun allFavoriteUsers() = itemUserModelsData.postValue(
         getAllFavoriteUserUseCase.invoke(null)
     )
 

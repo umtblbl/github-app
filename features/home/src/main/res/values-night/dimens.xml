@@ -15,10 +15,4 @@
     <dimen name="general_size_sm">16sp</dimen>
     <dimen name="general_size_md">24sp</dimen>
 
-    <!-- Toolbar -->
-    <dimen name="toolbar_icon_size">32dp</dimen>
-
-    <!-- App Progress -->
-    <dimen name="toolbar_height">60dp</dimen>
-
 </resources>

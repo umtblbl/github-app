@@ -4,6 +4,7 @@ import android.os.Build
 import android.widget.EditText
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import androidx.navigation.fragment.findNavController
 import com.github.android.GithubApp
 import com.github.commons.ui.adapter.RecyclerViewBasicAdapter
 import com.github.commons.ui.base.BaseFragment
@@ -53,7 +54,7 @@ class UserSearchFragment(
 
     private fun listenItemUserModels() {
         uiScope.launch(Dispatchers.Main) {
-            viewModel.itemUserModels.observe(viewLifecycleOwner) { itemUserModels ->
+            viewModel.itemUserModelsData.observe(viewLifecycleOwner) { itemUserModels ->
                 adapter.list = itemUserModels
             }
         }
@@ -61,20 +62,23 @@ class UserSearchFragment(
 
     private fun listenFavoriteActionResult() {
         viewModel.favoriteActionResultData.observe(this) { pair ->
-            val itemUserModel = pair.first
-            val isSuccess = pair.second
+            pair?.let {
+                val itemUserModel = it.first
+                val isSuccess = it.second
 
-            if (isSuccess) {
-                adapter.list = adapter.list.apply {
-                    this.firstOrNull { it == itemUserModel }
-                        ?.apply { this.isFavorite = !this.isFavorite }
+                if (isSuccess) {
+                    adapter.list = adapter.list.apply {
+                        this.firstOrNull { it == itemUserModel }
+                            ?.apply { this.isFavorite = !this.isFavorite }
+                    }
+                    Toast.makeText(
+                        context,
+                        context?.getString(ToastType.ProcessSuccessful.titleResId),
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
-                Toast.makeText(
-                    context,
-                    context?.getString(ToastType.ProcessSuccessful.titleResId),
-                    Toast.LENGTH_SHORT
-                ).show()
             }
+            viewModel.favoriteActionResultData.postValue(null)
         }
     }
 
@@ -82,8 +86,13 @@ class UserSearchFragment(
         adapter = RecyclerViewBasicAdapter(
             layoutId = R.layout.item_user,
             bindingModelName = BR.model,
-            itemSelected = {
-                println("SelectedUser: ${it.userName}")
+            itemSelected = { itemUserModel ->
+                itemUserModel.userName?.let {
+                    findNavController().navigate(
+                        UserSearchFragmentDirections
+                            .actionUserSearchFragmentToUserDetailFragment(it)
+                    )
+                }
             },
             bindHandler = { viewDataBinding, model ->
                 (viewDataBinding as? ItemUserBinding)

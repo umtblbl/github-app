@@ -2,5 +2,4 @@
 <resources>
     <!--Application name-->
     <string name="app_name">Github</string>
-    <string name="home_fragment">Home Fragmenttt</string>
 </resources>

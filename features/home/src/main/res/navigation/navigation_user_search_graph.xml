@@ -9,5 +9,21 @@
         android:id="@+id/user_search_fragment"
         android:name="com.github.dynamicfeatures.usersearch.ui.UserSearchFragment"
         android:label="@string/bottom_menu_search_title">
+        <action
+            android:id="@+id/action_user_search_fragment_to_user_detail_fragment"
+            app:destination="@+id/user_detail_fragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:popUpTo="@+id/user_search_fragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/user_detail_fragment"
+        android:name="com.github.dynamicfeatures.userdetail.ui.UserDetailFragment">
+        <argument
+            android:name="user_name"
+            app:argType="string" />
     </fragment>
 </navigation>

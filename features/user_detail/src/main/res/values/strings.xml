@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Global -->
+    <string name="image">image</string>
+    <!-- Toast Message -->
+    <string name="toast_process_successful_title">Successful</string>
+    <string name="toast_process_successful_text">Process completed.</string>
+    <!-- User Detail -->
+    <string name="user_detail_followers">Followers</string>
+    <string name="user_detail_following">Following</string>
+    <string name="user_detail_repository">Repository</string>
+    <string name="user_detail_gist">Gist</string>
+</resources>

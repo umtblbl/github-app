@@ -7,4 +7,5 @@
     <string name="feature_home">Home</string>
     <string name="feature_user_search">User Search</string>
     <string name="feature_user_favorites">User Favorites</string>
+    <string name="feature_user_detail">User Detail</string>
 </resources>

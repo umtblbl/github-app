@@ -1,3 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <dimen name="fragment_user_search_view_padding_top">4dp</dimen>
+    <dimen name="item_user_icon_size">40dp</dimen>
+    <dimen name="item_user_margin_bottom">12dp</dimen>
 </resources>

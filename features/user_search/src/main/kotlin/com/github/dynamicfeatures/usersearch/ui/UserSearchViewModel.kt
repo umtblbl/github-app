@@ -2,7 +2,6 @@ package com.github.dynamicfeatures.usersearch.ui
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.github.core.domain.UseCase
 import com.github.dynamicfeatures.usersearch.domain.*
 import com.github.dynamicfeatures.usersearch.ui.model.ItemUserModel
 import kotlinx.coroutines.flow.collect
@@ -17,17 +16,17 @@ class UserSearchViewModel @Inject constructor(
     private val addSearchUserUseCase: AddSearchUserUseCase
 ) : ViewModel() {
 
-    val favoriteActionResultData = MutableLiveData<Pair<ItemUserModel?, Boolean>>()
-    val itemUserModels = MutableLiveData<List<ItemUserModel>>()
+    val favoriteActionResultData = MutableLiveData<Pair<ItemUserModel?, Boolean>?>()
+    val itemUserModelsData = MutableLiveData<List<ItemUserModel>>()
 
-    suspend fun lastSearchedUsers() = itemUserModels.postValue(
+    suspend fun lastSearchedUsers() = itemUserModelsData.postValue(
         getAllSearchUserUseCase.invoke(null)
     )
 
     suspend fun searchQuery(query: String?) {
         userSearch(query ?: return)
             .collect {
-                itemUserModels.postValue(it)
+                itemUserModelsData.postValue(it)
                 addSearchUserUseCase.invoke(AddSearchUserUseCase.Params(it))
             }
     }

@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="model"
+            type="com.github.dynamicfeatures.userdetail.ui.model.ItemUserDetail" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/secondaryNavyBlue">
+
+        <ImageView
+            android:id="@+id/backImageView"
+            android:clickable="true"
+            android:focusable="true"
+            android:layout_width="@dimen/general_space_lg"
+            android:layout_height="@dimen/general_space_lg"
+            android:layout_marginStart="@dimen/general_space_sm"
+            android:layout_marginTop="@dimen/general_space_sm"
+            android:src="@drawable/back_icon"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:contentDescription="@string/image" />
+
+        <com.github.commons.views.RoundedCardView
+            android:id="@+id/roundedImageView"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginTop="@dimen/general_space_xl"
+            app:cardBackgroundColor="@color/mainCyan"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:contentDescription="@string/image"
+                app:imageUrl="@{model.avatarUrl}" />
+
+        </com.github.commons.views.RoundedCardView>
+
+        <TextView
+            android:id="@+id/userNameTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/general_space_md"
+            android:text="@{model.userName}"
+            android:textColor="@color/white"
+            android:textSize="@dimen/general_size_sm"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/roundedImageView" />
+
+        <TextView
+            android:id="@+id/nameTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/general_space_xsm"
+            android:text="@{model.name}"
+            android:textColor="@color/white"
+            android:textSize="@dimen/general_size_sm"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/userNameTextView" />
+
+        <TextView
+            android:id="@+id/bioTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/general_space_xsm"
+            android:text="@{model.bio}"
+            android:textColor="@color/white"
+            android:textSize="@dimen/general_size_sm"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/nameTextView" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/general_space_md"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/bioTextView">
+
+            <com.github.commons.views.UserInfoItemView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:userValue="@{model.followers}"
+                android:valueKey="@{@string/user_detail_followers}" />
+
+            <com.github.commons.views.UserInfoItemView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/general_space_sm"
+                android:userValue="@{model.following}"
+                android:valueKey="@{@string/user_detail_following}" />
+
+            <com.github.commons.views.UserInfoItemView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/general_space_sm"
+                android:userValue="@{model.publicRepos}"
+                android:valueKey="@{@string/user_detail_repository}" />
+
+            <com.github.commons.views.UserInfoItemView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/general_space_sm"
+                android:userValue="@{model.publicGists}"
+                android:valueKey="@{@string/user_detail_gist}" />
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

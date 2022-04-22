@@ -6,6 +6,7 @@ object BuildModules {
         const val HOME = ":features:home"
         const val USER_SEARCH = ":features:user_search"
         const val USER_FAVORITES = ":features:user_favorites"
+        const val USER_DETAIL = ":features:user_detail"
     }
 
     object Commons {

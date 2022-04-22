@@ -1,6 +1,8 @@
 package com.github.dynamicfeatures.userfavorites.ui
 
 import android.widget.Toast
+import androidx.navigation.Navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.github.android.GithubApp
 import com.github.commons.ui.adapter.RecyclerViewBasicAdapter
 import com.github.commons.ui.base.BaseFragment
@@ -43,20 +45,23 @@ class UserFavoritesFragment(
 
     private fun listenFavoriteActionResult() {
         viewModel.favoriteActionResultData.observe(this) { pair ->
-            val itemUserModel = pair.first
-            val isSuccess = pair.second
+            pair?.let {
+                val itemUserModel = pair.first
+                val isSuccess = pair.second
 
-            if (isSuccess) {
-                adapter.list = adapter.list.apply {
-                    this.firstOrNull { it == itemUserModel }
-                        ?.apply { this.isFavorite = !this.isFavorite }
+                if (isSuccess) {
+                    adapter.list = adapter.list.apply {
+                        this.firstOrNull { it == itemUserModel }
+                            ?.apply { this.isFavorite = !this.isFavorite }
+                    }
+                    Toast.makeText(
+                        context,
+                        context?.getString(ToastType.ProcessSuccessful.titleResId),
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
-                Toast.makeText(
-                    context,
-                    context?.getString(ToastType.ProcessSuccessful.titleResId),
-                    Toast.LENGTH_SHORT
-                ).show()
             }
+            viewModel.favoriteActionResultData.postValue(null)
         }
     }
 
@@ -64,8 +69,13 @@ class UserFavoritesFragment(
         adapter = RecyclerViewBasicAdapter(
             layoutId = R.layout.item_user,
             bindingModelName = BR.model,
-            itemSelected = {
-                println("SelectedUser: ${it.userName}")
+            itemSelected = { itemUserModel ->
+                itemUserModel.userName?.let {
+                    findNavController().navigate(
+                        UserFavoritesFragmentDirections
+                            .actionUserFavoritesFragmentToUserDetailFragment(it)
+                    )
+                }
             },
             bindHandler = { viewDataBinding, model ->
                 (viewDataBinding as? ItemUserBinding)
@@ -82,7 +92,7 @@ class UserFavoritesFragment(
 
     private fun listenItemUserModels() {
         uiScope.launch(Dispatchers.Main) {
-            viewModel.itemUserModels.observe(viewLifecycleOwner) { itemUserModels ->
+            viewModel.itemUserModelsData.observe(viewLifecycleOwner) { itemUserModels ->
                 adapter.list = itemUserModels
             }
         }
