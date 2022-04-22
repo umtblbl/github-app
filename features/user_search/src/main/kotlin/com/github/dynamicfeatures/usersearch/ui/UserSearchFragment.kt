@@ -49,18 +49,36 @@ class UserSearchFragment(
         customizeSearchView()
         listenUserSearchView()
         listenFavoriteActionResult()
+        listenItemUserModels()
+        uiScope.launch(Dispatchers.IO) { viewModel.getLastSearchedUsers() }
     }
 
     //region private functions
 
+    private fun listenItemUserModels() {
+        uiScope.launch(Dispatchers.Main) {
+            viewModel.itemUserModels.observe(viewLifecycleOwner) { itemUserModels ->
+                adapter.list = itemUserModels
+            }
+        }
+    }
+
     private fun listenFavoriteActionResult() {
-        viewModel.favoriteActionResultData.observe(this) { isSuccess ->
-            if (isSuccess)
+        viewModel.favoriteActionResultData.observe(this) { pair ->
+            val itemUserModel = pair.first
+            val isSuccess = pair.second
+
+            if (isSuccess) {
+                adapter.list = adapter.list.apply {
+                    this.firstOrNull { it == itemUserModel }
+                        ?.apply { this.isFavorite = !this.isFavorite }
+                }
                 Toast.makeText(
                     context,
                     context?.getString(ToastType.ProcessSuccessful.titleResId),
                     Toast.LENGTH_SHORT
                 ).show()
+            }
         }
     }
 
@@ -72,13 +90,13 @@ class UserSearchFragment(
                 println("SelectedUser: ${it.userName}")
             },
             bindHandler = { viewDataBinding, model ->
-                val itemUserBinding = viewDataBinding as? ItemUserBinding
-                val itemUserModel = model as? ItemUserModel
-                itemUserBinding?.favoriteImageView?.setOnClickListener {
-                    uiScope.launch(Dispatchers.IO) {
-                        viewModel.addFavoriteUser(itemUserModel)
+                (viewDataBinding as? ItemUserBinding)
+                    ?.favoriteImageView
+                    ?.setOnClickListener {
+                        uiScope.launch(Dispatchers.IO) {
+                            viewModel.handleFavoriteSelection(model as? ItemUserModel)
+                        }
                     }
-                }
             }
         )
     }
@@ -109,16 +127,10 @@ class UserSearchFragment(
                 .changes()
                 .debounce(Configs.Search.TIME_OUT_MILLIS)
                 .filter { searchItem ->
-                    return@filter searchItem?.text?.isNotEmpty() ?: false
-                }
-                .distinctUntilChanged()
-                .flatMapLatest { searchItem ->
+                    return@filter !searchItem?.text.isNullOrBlank()
+                }.collect { searchItem ->
                     if (searchItem?.isSubmit == true) binding.userSearchView.clearFocus()
-                    viewModel.userSearch(searchItem?.text ?: "")
-                }.collect { result ->
-                    withContext(Dispatchers.Main) {
-                        adapter.list = result
-                    }
+                    viewModel.searchQuery(searchItem?.text)
                 }
         }
     }

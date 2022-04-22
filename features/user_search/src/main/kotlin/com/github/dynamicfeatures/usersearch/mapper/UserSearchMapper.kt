@@ -11,7 +11,7 @@ data class UserSearchMapperInput(
 )
 
 class UserSearchMapper : Mapper<UserSearchMapperInput?, List<ItemUserModel>> {
-    override suspend fun map(from: UserSearchMapperInput?): List<ItemUserModel> {
+    override fun map(from: UserSearchMapperInput?): List<ItemUserModel> {
         return from?.userSearchResponse?.users?.map { searchUser ->
             ItemUserModel(
                 userName = searchUser?.login,

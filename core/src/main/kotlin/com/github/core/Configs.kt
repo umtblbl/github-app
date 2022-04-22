@@ -10,5 +10,7 @@ object Configs {
 
     object Database {
         const val NAME = BuildConfig.GITHUB_DATABASE_NAME
+        const val VERSION = 2
+        const val EXPORT_SCHEME = false
     }
 }

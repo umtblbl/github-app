@@ -1,18 +1,32 @@
 package com.github.core.data.local.room.dataSource
 
-import com.github.core.data.local.room.dao.GithubDao
+import com.github.core.data.local.room.dao.FavoriteUserDao
+import com.github.core.data.local.room.dao.UserSearchDao
 import com.github.core.data.local.room.model.FavoriteUserEntity
+import com.github.core.data.local.room.model.UserSearchEntity
 import javax.inject.Inject
 
 class GithubLocalDataSource @Inject constructor(
-    private val githubDao: GithubDao
+    private val favoriteUserDao: FavoriteUserDao,
+    private val userSearchDao: UserSearchDao
 ) {
-    suspend fun addFavoriteUser(users: List<FavoriteUserEntity>) =
-        githubDao.add(*users.toTypedArray())
+    fun addFavoriteUser(users: List<FavoriteUserEntity>) =
+        favoriteUserDao.add(*users.toTypedArray())
 
-    suspend fun searchFavoriteUser(userName: String?): List<FavoriteUserEntity> =
-        githubDao.search("%$userName%")
+    fun searchFavoriteUser(userName: String): List<FavoriteUserEntity> =
+        favoriteUserDao.search("%$userName%")
 
-    suspend fun getAllFavoriteUser(): List<FavoriteUserEntity> =
-        githubDao.getAll()
+    fun deleteFavoriteUser(userName: String?): Int =
+        favoriteUserDao.delete(userName)
+
+    fun addSearchUser(users: List<UserSearchEntity>) =
+        userSearchDao.add(*users.toTypedArray())
+
+    fun getAllFavoriteUser(): List<FavoriteUserEntity> =
+        favoriteUserDao.getAll()
+
+    fun getAllSearchUser(): List<UserSearchEntity> =
+        userSearchDao.getAll()
+
+    fun deleteAllSearchUser() = userSearchDao.deleteAll()
 }

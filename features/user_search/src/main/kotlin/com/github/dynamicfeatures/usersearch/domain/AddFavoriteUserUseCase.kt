@@ -1,5 +1,6 @@
 package com.github.dynamicfeatures.usersearch.domain
 
+import com.github.core.data.local.room.model.FavoriteUserEntity
 import com.github.core.data.repository.GithubRepository
 import com.github.core.domain.UseCase
 import com.github.dynamicfeatures.usersearch.ui.model.ItemUserModel
@@ -11,9 +12,17 @@ class AddFavoriteUserUseCase @Inject constructor(
 
     data class Params(val model: ItemUserModel?)
 
-    override suspend fun invoke(params: Params?) =
-        githubRepository.addFavoriteUser(
-            userName = params?.model?.userName,
-            avatarUrl = params?.model?.avatarUrl
+    override suspend fun invoke(params: Params?): Boolean {
+        params?.model?.userName ?: return false
+        params.model.avatarUrl ?: return false
+
+        return githubRepository.addFavoriteUser(
+            listOf(
+                FavoriteUserEntity(
+                    userName = params.model.userName,
+                    avatarUrl = params.model.avatarUrl
+                )
+            )
         )
+    }
 }

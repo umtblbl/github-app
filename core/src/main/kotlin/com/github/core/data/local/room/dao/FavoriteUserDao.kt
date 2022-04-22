@@ -7,10 +7,13 @@ import androidx.room.Query
 import com.github.core.data.local.room.model.FavoriteUserEntity
 
 @Dao
-interface GithubDao {
+interface FavoriteUserDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun add(vararg coin: FavoriteUserEntity): LongArray
+
+    @Query("DELETE FROM favorite_users WHERE userName = :userName")
+    fun delete(userName: String?): Int
 
     @Query("SELECT * FROM favorite_users WHERE userName LIKE :userName")
     fun search(userName: String?): List<FavoriteUserEntity>
