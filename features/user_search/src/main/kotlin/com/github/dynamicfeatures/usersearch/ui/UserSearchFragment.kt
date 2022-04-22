@@ -90,7 +90,10 @@ class UserSearchFragment(
                 itemUserModel.userName?.let {
                     findNavController().navigate(
                         UserSearchFragmentDirections
-                            .actionUserSearchFragmentToUserDetailFragment(it)
+                            .actionUserSearchFragmentToUserDetailFragment(
+                                userName = it,
+                                isFavorite = itemUserModel.isFavorite
+                            )
                     )
                 }
             },

@@ -19,16 +19,16 @@ class UserFavoritesViewModel @Inject constructor(
         getAllFavoriteUserUseCase.invoke(null)
     )
 
-    suspend fun handleFavoriteSelection(itemUserModel: ItemUserModel?) {
-        itemUserModel ?: return
-        if (itemUserModel.isFavorite)
-            deleteFavoriteUser(itemUserModel)
+    suspend fun handleFavoriteSelection(model: ItemUserModel?) {
+        model ?: return
+        if (model.isFavorite)
+            deleteFavoriteUser(model)
     }
 
-    private suspend fun deleteFavoriteUser(itemUserModel: ItemUserModel?) {
+    private suspend fun deleteFavoriteUser(model: ItemUserModel?) {
         val result = deleteFavoriteUserUseCase.invoke(
-            DeleteFavoriteUserUseCase.Params(itemUserModel)
+            DeleteFavoriteUserUseCase.Params(model)
         )
-        favoriteActionResultData.postValue(Pair(itemUserModel, result))
+        favoriteActionResultData.postValue(Pair(model, result))
     }
 }

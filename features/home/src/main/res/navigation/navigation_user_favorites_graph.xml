@@ -25,5 +25,8 @@
         <argument
             android:name="user_name"
             app:argType="string" />
+        <argument
+            android:name="is_favorite"
+            app:argType="boolean" />
     </fragment>
 </navigation>

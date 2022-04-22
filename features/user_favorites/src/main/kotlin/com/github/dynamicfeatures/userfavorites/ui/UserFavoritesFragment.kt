@@ -73,7 +73,10 @@ class UserFavoritesFragment(
                 itemUserModel.userName?.let {
                     findNavController().navigate(
                         UserFavoritesFragmentDirections
-                            .actionUserFavoritesFragmentToUserDetailFragment(it)
+                            .actionUserFavoritesFragmentToUserDetailFragment(
+                                userName = it,
+                                isFavorite = itemUserModel.isFavorite
+                            )
                     )
                 }
             },

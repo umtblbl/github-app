@@ -8,5 +8,6 @@ class ItemUserDetail(
     val followers: Int?,
     val following: Int?,
     val publicRepos: Int?,
-    val publicGists: Int?
+    val publicGists: Int?,
+    var isFavorite: Boolean = false
 )

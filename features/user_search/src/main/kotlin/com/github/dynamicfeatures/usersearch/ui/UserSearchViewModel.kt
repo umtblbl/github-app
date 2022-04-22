@@ -31,10 +31,10 @@ class UserSearchViewModel @Inject constructor(
             }
     }
 
-    suspend fun handleFavoriteSelection(itemUserModel: ItemUserModel?) {
-        itemUserModel ?: return
-        if (itemUserModel.isFavorite) deleteFavoriteUser(itemUserModel)
-        else addFavoriteUser(itemUserModel)
+    suspend fun handleFavoriteSelection(model: ItemUserModel?) {
+        model ?: return
+        if (model.isFavorite) deleteFavoriteUser(model)
+        else addFavoriteUser(model)
     }
 
     //region Private Functions
@@ -43,18 +43,18 @@ class UserSearchViewModel @Inject constructor(
         emit(userSearchUseCase.invoke(UserSearchUseCase.Params(query)))
     }
 
-    private suspend fun addFavoriteUser(itemUserModel: ItemUserModel?) {
+    private suspend fun addFavoriteUser(model: ItemUserModel?) {
         val result = addFavoriteUserUseCase.invoke(
-            AddFavoriteUserUseCase.Params(itemUserModel)
+            AddFavoriteUserUseCase.Params(model)
         )
-        favoriteActionResultData.postValue(Pair(itemUserModel, result))
+        favoriteActionResultData.postValue(Pair(model, result))
     }
 
-    private suspend fun deleteFavoriteUser(itemUserModel: ItemUserModel?) {
+    private suspend fun deleteFavoriteUser(model: ItemUserModel?) {
         val result = deleteFavoriteUserUseCase.invoke(
-            DeleteFavoriteUserUseCase.Params(itemUserModel)
+            DeleteFavoriteUserUseCase.Params(model)
         )
-        favoriteActionResultData.postValue(Pair(itemUserModel, result))
+        favoriteActionResultData.postValue(Pair(model, result))
     }
 
     //endregion

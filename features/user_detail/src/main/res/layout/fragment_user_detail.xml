@@ -16,16 +16,29 @@
 
         <ImageView
             android:id="@+id/backImageView"
-            android:clickable="true"
-            android:focusable="true"
             android:layout_width="@dimen/general_space_lg"
             android:layout_height="@dimen/general_space_lg"
             android:layout_marginStart="@dimen/general_space_sm"
             android:layout_marginTop="@dimen/general_space_sm"
+            android:clickable="true"
+            android:contentDescription="@string/image"
+            android:focusable="true"
             android:src="@drawable/back_icon"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:contentDescription="@string/image" />
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/favoriteImageView"
+            android:layout_width="@dimen/general_space_lg"
+            android:layout_height="@dimen/general_space_lg"
+            android:layout_marginEnd="@dimen/general_space_sm"
+            android:src="@{model.isFavorite ? @drawable/favorite_icon : @drawable/un_favorite_icon}"
+            android:layout_marginTop="@dimen/general_space_sm"
+            android:clickable="true"
+            android:contentDescription="@string/image"
+            android:focusable="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
 
         <com.github.commons.views.RoundedCardView
             android:id="@+id/roundedImageView"
