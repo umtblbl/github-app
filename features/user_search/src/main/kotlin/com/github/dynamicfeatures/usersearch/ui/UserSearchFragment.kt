@@ -1,17 +1,14 @@
 package com.github.dynamicfeatures.usersearch.ui
 
 import android.os.Build
-import android.util.Log
 import android.widget.EditText
 import android.widget.Toast
 import androidx.core.content.ContextCompat
-import androidx.lifecycle.Observer
 import com.github.android.GithubApp
 import com.github.commons.ui.adapter.RecyclerViewBasicAdapter
 import com.github.commons.ui.base.BaseFragment
 import com.github.commons.ui.extension.changes
 import com.github.commons.ui.extension.showKeyboard
-import com.github.commons.views.AppToast
 import com.github.dynamicfeatures.usersearch.BR
 import com.github.dynamicfeatures.usersearch.Configs
 import com.github.dynamicfeatures.usersearch.R
@@ -24,7 +21,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 class UserSearchFragment(
     override val layoutResId: Int = R.layout.fragment_user_search
@@ -50,7 +46,7 @@ class UserSearchFragment(
         listenUserSearchView()
         listenFavoriteActionResult()
         listenItemUserModels()
-        uiScope.launch(Dispatchers.IO) { viewModel.getLastSearchedUsers() }
+        uiScope.launch(Dispatchers.IO) { viewModel.lastSearchedUsers() }
     }
 
     //region private functions

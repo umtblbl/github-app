@@ -84,6 +84,7 @@ dependencies {
     implementation(project(BuildModules.APP))
     implementation(project(BuildModules.CORE))
     implementation(project(BuildModules.Commons.UI))
+    implementation(project(BuildModules.Commons.VIEWS))
 
     implementation(Dependencies.KOTLIN)
     implementation(Dependencies.APPCOMPAT)

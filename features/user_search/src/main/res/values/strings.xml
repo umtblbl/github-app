@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Global-->
+    <!-- Global -->
     <string name="image">Image</string>
     <!-- User Search Fragment -->
     <string name="fragment_user_search">Fragment User Search</string>

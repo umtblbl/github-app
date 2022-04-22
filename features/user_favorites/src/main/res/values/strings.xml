@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="user_favorites_fragment">User Favorites Fragment</string>
+    <!-- Global-->
+    <string name="image">image</string>
+    <!-- Toast Message-->
+    <string name="toast_process_successful_title">Successful</string>
+    <string name="toast_process_successful_text">Process completed.</string>
 </resources>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="model"
+            type="com.github.dynamicfeatures.userfavorites.ui.model.ItemUserModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/item_user_margin_bottom"
+        android:animateLayoutChanges="true"
+        android:background="@drawable/item_bg">
+
+        <com.github.commons.views.RoundedCardView
+            android:id="@+id/imageCardView"
+            android:layout_width="@dimen/item_user_icon_size"
+            android:layout_height="@dimen/item_user_icon_size"
+            android:layout_marginVertical="@dimen/general_space_xsm"
+            android:layout_marginStart="@dimen/general_space_md"
+            app:cardBackgroundColor="@color/mainCyan"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/userNameTextView"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:contentDescription="@string/image"
+                app:imageUrl="@{model.avatarUrl}" />
+
+        </com.github.commons.views.RoundedCardView>
+
+        <TextView
+            android:id="@+id/userNameTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/general_space_sm"
+            android:ellipsize="end"
+            android:gravity="start"
+            android:lines="1"
+            android:text="@{model.userName}"
+            android:textColor="@color/white"
+            android:textSize="@dimen/general_size_sm"
+            android:textStyle="bold"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/favoriteImageView"
+            app:layout_constraintStart_toEndOf="@id/imageCardView"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/favoriteImageView"
+            android:layout_width="@dimen/general_space_md"
+            android:layout_height="@dimen/general_space_md"
+            android:layout_marginEnd="@dimen/general_space_md"
+            android:contentDescription="@string/image"
+            android:src="@{model.isFavorite ? @drawable/favorite_icon : @drawable/un_favorite_icon}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

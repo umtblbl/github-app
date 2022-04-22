@@ -20,8 +20,9 @@ class UserSearchViewModel @Inject constructor(
     val favoriteActionResultData = MutableLiveData<Pair<ItemUserModel?, Boolean>>()
     val itemUserModels = MutableLiveData<List<ItemUserModel>>()
 
-    suspend fun getLastSearchedUsers() =
-        itemUserModels.postValue(getAllSearchUserUseCase.invoke(null))
+    suspend fun lastSearchedUsers() = itemUserModels.postValue(
+        getAllSearchUserUseCase.invoke(null)
+    )
 
     suspend fun searchQuery(query: String?) {
         userSearch(query ?: return)
